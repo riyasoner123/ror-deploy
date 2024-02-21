@@ -6,10 +6,12 @@ set :repo_url, 'https://github.com/riyasoner123/ror-deploy.git'
 set :deploy_to, '/home/ubuntu/ror-deploy'
 set :use_sudo, false
 set :branch, 'main'
-set :linked_files, %w{config/database.yml config/master.key}
+set :linked_files, []
 set :rails_env, 'production'
+set :rbenv_ruby, '2.7.6'
+
 set :keep_releases, 2
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system'
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -28,5 +30,15 @@ namespace :puma do
       execute "mkdir #{shared_path}/tmp/pids -p"
     end
   end
+
+  desc 'Start Puma server'
+  task :start do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, :puma, "--config", "#{fetch(:puma_config_file)}", "--daemon"
+      end
+    end
+  end
+
   before :start, :make_dirs
 end

@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.6'
+ruby '3.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '~> 1.7.2'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -51,9 +51,7 @@ group :development do
   gem 'capistrano-rbenv'
 
   gem 'capistrano3-puma'
-
-
-  
+  gem 'capistrano-figaro-yml', '~> 1.0.2'
 
 
 end

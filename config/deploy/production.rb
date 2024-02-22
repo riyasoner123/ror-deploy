@@ -49,7 +49,7 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
- server "35.154.150.101",
+ server "13.201.96.112",
    user: "ubuntu",
    roles: %w{web app db}
 

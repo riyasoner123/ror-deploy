@@ -8,7 +8,7 @@ set :use_sudo, false
 set :branch, 'main'
 set :linked_files, []
 set :rails_env, 'production'
-set :rbenv_ruby, '2.7.6'
+set :rbenv_ruby, '3.3.0'
 
 set :keep_releases, 2
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
